@@ -1,0 +1,15 @@
+POST HTTP://localhost:9090/merch/create HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWx2YXJvIiwic3VybmFtZSI6IkdyYW5qYSIsImVtYWlsIjoiQWx2YXJvQGFsdmFyby5jb20iLCJpYXQiOjE2OTk4MjIxNTAsImV4cCI6MTY5OTkwODU1MH0.cdthy-WZJjM4dsvR-0bA33tBbZvk2yPn4-YqeB5MfLU
+
+{
+    "name": "Secibd",
+    "price": 15,
+    "size": "xxl"
+}
+####
+DELETE HTTP://localhost:9090/delete/merchandising/6551023511a548bc774e8352
+
+
+####
+GET HTTP://localhost:9090/merchandising

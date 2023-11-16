@@ -1,0 +1,17 @@
+POST HTTP://localhost:9090/event/create HTTP/1.1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWx2YXJvIiwic3VybmFtZSI6IkdyYW5qYSIsImlkIjoiNjU1MGY2MTIwOGU3ODU5MjA0YzVhNGUxIiwiaWF0IjoxNjk5ODA2MjUxLCJleHAiOjE2OTk4OTI2NTF9.jE642xGzlewavpPS4wWzRB5TvjcBImxZUwILKVZY_cc
+
+{
+    "name": "First",
+    "location": "Porto, Portugal",
+    "date": "11-12-15",
+    "generalInfo": "650315e5522b8e64aea19764"
+}
+####
+DELETE HTTP://localhost:9090/delete/event/6550fc733eef4ca5482868ca
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWx2YXJvIiwic3VybmFtZSI6IkdyYW5qYSIsImlkIjoiNjU1MGY2MTIwOGU3ODU5MjA0YzVhNGUxIiwiaWF0IjoxNjk5ODA2MjUxLCJleHAiOjE2OTk4OTI2NTF9.jE642xGzlewavpPS4wWzRB5TvjcBImxZUwILKVZY_cc
+
+
+####
+GET HTTP://localhost:9090/events
