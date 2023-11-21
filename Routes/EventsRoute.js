@@ -50,7 +50,7 @@ router.get("/events/:id", async (req, res) => {
 
 
 /////////POST///////
-router.post("/event/create", EventImage.single("image"),VerifyToken, async (req, res) => {
+router.post("/event/create", EventImage.single("image"), async (req, res) => {
 
     const newEvent = new EventModel({
         name: req.body.name,
@@ -61,7 +61,6 @@ router.post("/event/create", EventImage.single("image"),VerifyToken, async (req,
     });
     try {
         const event = await newEvent.save();
-
         res.status(201).send({
             statusCode: 201,
             message: "Event saved successfully",
