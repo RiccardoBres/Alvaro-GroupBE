@@ -26,22 +26,35 @@ router.get('/merchandising', async (req, res) => {
     }
 });
 
-//////////////GET BY ID //////////////////
 router.get("/merchandising/:id", async (req, res) => {
     const { id } = req.params;
 
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).send({
+            statusCode: 400,
+            message: "Invalid ID format",
+        });
+    }
+
     try {
-        const merchById = await MerchandisingModel.findById(id)
+        const merchById = await MerchandisingModel.findById(id);
+        if (!merchById) {
+            return res.status(404).send({
+                statusCode: 404,
+                message: "Merchandise not found",
+            });
+        }
+
         res.status(200).send({
             statusCode: 200,
-            merchById: merchById
-        })
+            merchById: merchById,
+        });
     } catch (error) {
         res.status(500).send({
             statusCode: 500,
             message: "Internal server error",
             error,
-        })
+        });
     }
 });
 
