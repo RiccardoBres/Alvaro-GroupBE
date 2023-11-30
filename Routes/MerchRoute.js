@@ -7,24 +7,31 @@ const router = express.Router();
 
 //////////////GET //////////////////
 router.get('/merchandising', async (req, res) => {
+    const { page = 1, pageSize = 10 } = req.query;
+
     try {
-        const merchandising = await MerchandisingModel.find();
+        /* const parsedPage = parseInt(page, 10);
+        const parsedPageSize = parseInt(pageSize, 10); */
+        const merchandising = await MerchandisingModel.find()
+           /*  .limit(parsedPageSize)
+            .skip((parsedPage - 1) * parsedPageSize); */
         const totalMerchandising = await MerchandisingModel.countDocuments();
         res.status(200).send({
             statusCode: 200,
             meta: {
-                totalMerchandising: totalMerchandising
+                totalMerchandising: totalMerchandising,
             },
-            merchandising: merchandising
+            merchandising: merchandising,
         });
     } catch (error) {
         res.status(500).send({
             statusCode: 500,
-            message: "Internal server error",
-            error
+            message: 'Internal server error',
+            error,
         });
     }
 });
+
 
 router.get("/merchandising/:id", async (req, res) => {
     const { id } = req.params;
@@ -59,7 +66,7 @@ router.get("/merchandising/:id", async (req, res) => {
 });
 
 ///////// POST /////////
-router.post("/merch/create",UploadMerchImage.single("image"), async (req, res) => {
+router.post("/merch/create", UploadMerchImage.single("image"), async (req, res) => {
     const newMerch = new MerchandisingModel({
         name: req.body.name,
         image: req.file.path,
