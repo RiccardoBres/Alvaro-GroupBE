@@ -18,11 +18,13 @@ const EventsRoute = require('./Routes/EventsRoute');
 const UserRoute = require('./Routes/UserRoute');
 const LoginRoute = require('./Routes/LoginRoute');
 const MerchRoute = require('./Routes/MerchRoute');
+const PaymentsRoute = require('./Routes/PaymentsRoute')
 
 app.use('/', EventsRoute);
 app.use('/', UserRoute);
 app.use('/', LoginRoute);
 app.use('/', MerchRoute);
+app.use('/', PaymentsRoute)
 
 db.on("error", console.error.bind("errore connessione al server"));
 db.once("open", () => { console.log("database mongodb connesso") }
