@@ -1,17 +1,29 @@
 const express = require('express');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const crypto = require('crypto');
 
 const router = express.Router();
 
 router.post('/create-payment-intent', async (req, res) => {
-    const { items } = req.body;
+    const { totalAmountCents, hash, paymentMethodId } = req.body;
+    const calculatedHash = crypto.createHash('sha256').update(totalAmountCents.toString()).digest('hex');
+
+    if (calculatedHash !== hash) {
+        return res.status(400).json({ error: 'Invalid amount.' });
+    }
 
     try {
-        const totalAmount = calculateTotalAmount(items);
         const paymentIntent = await stripe.paymentIntents.create({
-            amount: totalAmount,
+            amount: totalAmountCents,
             currency: 'usd',
-        });
+            payment_method: paymentMethodId,
+            confirm: true,
+            automatic_payment_methods: {
+              enabled: true,
+              allow_redirects: 'never',
+            },
+           });
+    
         res.json({ clientSecret: paymentIntent.client_secret });
     } catch (error) {
         console.error('Errore nella creazione del pagamento intent:', error);
@@ -19,13 +31,4 @@ router.post('/create-payment-intent', async (req, res) => {
     }
 });
 
-function calculateTotalAmount(items) {
-    let total = 0;
-    items.forEach((item) => {
-        total += item.price * item.quantity;
-    });
-    return total * 100;
-}
-
 module.exports = router;
-
