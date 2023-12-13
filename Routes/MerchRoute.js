@@ -72,6 +72,7 @@ router.post("/merch/create", UploadMerchImage.single("image"), async (req, res) 
         image: req.file.path,
         size: req.body.size,
         price: req.body.price,
+        description: req.body.description,
     });
 
     try {

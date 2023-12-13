@@ -17,6 +17,10 @@ price: {
     type : Number,
     require: true
 },
+description: {
+    type : String,
+    require: true
+},
 
 
 },{timestamps :true, strict :true});
