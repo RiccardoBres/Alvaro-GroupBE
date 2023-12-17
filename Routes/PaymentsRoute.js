@@ -19,14 +19,13 @@ router.post('/create-payment-intent', async (req, res) => {
             payment_method: paymentMethodId,
             confirm: true,
             automatic_payment_methods: {
-              enabled: true,
-              allow_redirects: 'never',
+                enabled: true,
+                allow_redirects: 'never',
             },
-           });
-    
+        });
+
         res.json({ clientSecret: paymentIntent.client_secret });
     } catch (error) {
-        console.error('Errore nella creazione del pagamento intent:', error);
         res.status(500).json({ error: 'Errore nella creazione del pagamento intent.' });
     }
 });

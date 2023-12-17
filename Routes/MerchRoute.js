@@ -10,11 +10,8 @@ router.get('/merchandising', async (req, res) => {
     const { page = 1, pageSize = 10 } = req.query;
 
     try {
-        /* const parsedPage = parseInt(page, 10);
-        const parsedPageSize = parseInt(pageSize, 10); */
+       
         const merchandising = await MerchandisingModel.find()
-           /*  .limit(parsedPageSize)
-            .skip((parsedPage - 1) * parsedPageSize); */
         const totalMerchandising = await MerchandisingModel.countDocuments();
         res.status(200).send({
             statusCode: 200,

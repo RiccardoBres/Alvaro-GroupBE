@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose');
+const cors = require('cors'); 
 const PORT = 9090;
-const cors = require('cors')
 
 require("dotenv").config();
 
@@ -20,13 +20,16 @@ const LoginRoute = require('./Routes/LoginRoute');
 const MerchRoute = require('./Routes/MerchRoute');
 const PaymentsRoute = require('./Routes/PaymentsRoute');
 const CustomerRoute = require('./Routes/CustomersRoute');
+const MailingListRoute = require('./Routes/MailingListRoute');
 
 app.use('/', EventsRoute);
 app.use('/', UserRoute);
 app.use('/', LoginRoute);
 app.use('/', MerchRoute);
-app.use('/', PaymentsRoute)
-app.use('/', CustomerRoute)
+app.use('/', PaymentsRoute);
+app.use('/', CustomerRoute);
+app.use('/', MailingListRoute)
+
 
 db.on("error", console.error.bind("errore connessione al server"));
 db.once("open", () => { console.log("database mongodb connesso") }
