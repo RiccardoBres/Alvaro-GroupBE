@@ -1,5 +1,0 @@
-Username: riccardobresolin63
-password: huuquoYcyyibFT85
-
-mongodb+srv://riccardobresolin63:huuquoYcyyibFT85@alvaro-group.n8eifv8.mongodb.net/
-
